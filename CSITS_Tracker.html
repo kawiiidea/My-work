@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSITS Tracker</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            background: #baf3d2;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 235px;
+            min-height: 100vh;
+            padding: 20px 15px;
+            background: linear-gradient(purple, blue);
+            border-right: 5px solid lime;
+        }
+
+        .sidebar h1 {
+            font-size: 28px;
+        }
+
+        .tagline {
+            letter-spacing: 2px;
+            font-size: 13px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 6px;
+        }
+
+        .status-select {
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .add-button {
+            display: block;
+            margin: 12px auto;
+            background: #31baff;
+            color: white;
+        }
+
+        /* Main dashboard */
+        .main {
+            flex: 1;
+            padding: 25px;
+            background: linear-gradient(110deg, #c4f8d8, #80a2ef);
+            min-height: 100vh;
+        }
+
+        .university {
+            text-align: right;
+            font-size: 11px;
+            font-style: italic;
+        }
+
+        .tasks-card {
+            background: white;
+            padding: 30px;
+            border-radius: 25px 25px 0 0;
+            min-height: 400px;
+        }
+
+        .task {
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-left: 5px solid #c344a8;
+            border-radius: 8px;
+        }
+
+        .Pending {
+            color: #c344a8;
+        }
+
+        .InProgress {
+            color: #9775ae;
+        }
+
+        .Completed {
+            color: #2688b7;
+        }
+
+        .task button {
+            margin: 5px 3px 0 0;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                min-height: auto;
+            }
+
+            .main {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h1>CSITS TRACKER</h1>
+
+        <p class="tagline">
+            LESS PROCRASTINATE,<br>
+            MORE DOMINATION
+        </p>
+
+        <p>Create your task</p>
+
+        <form id="taskForm">
+            <input id="taskName"
+                   type="text"
+                   placeholder="Name it, Task it!"
+                   required>
+
+            <input id="member"
+                   type="text"
+                   placeholder="Assign Member"
+                   required>
+
+            <input id="dueDate"
+                   type="date"
+                   required>
+
+            <select id="taskStatus" class="status-select">
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+
+            <button class="add-button" type="submit">
+                Add Task
+            </button>
+        </form>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="main">
+        <p class="university">UNIVERSIDAD DE DAGUPAN</p>
+
+        <h1>Hi, Udddians!</h1>
+        <p>Ready to achieve something amazing today</p>
+
+        <div class="tasks-card">
+            <h2>My Tasks</h2>
+
+            <select id="filter">
+                <option value="All">All Tasks</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+
+            <div id="taskList"></div>
+        </div>
+    </div>
+
+    <script>
+        // Store all tasks in an array
+        let tasks = [];
+        let nextId = 1;
+
+        const form = document.getElementById("taskForm");
+        const taskList = document.getElementById("taskList");
+        const filter = document.getElementById("filter");
+
+        // Add a new task
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("taskName").value.trim();
+            let member = document.getElementById("member").value.trim();
+            let dueDate = document.getElementById("dueDate").value;
+            let status = document.getElementById("taskStatus").value;
+
+            if (name === "" || member === "" || dueDate === "") {
+                alert("Please complete all fields.");
+                return;
+            }
+
+            let task = {
+                id: nextId++,
+                name: name,
+                member: member,
+                dueDate: dueDate,
+                status: status
+            };
+
+            tasks.push(task);
+
+            form.reset();
+            showTasks();
+        });
+
+        // Display tasks on the dashboard
+        function showTasks() {
+            taskList.innerHTML = "";
+
+            let selectedFilter = filter.value;
+            let foundTask = false;
+
+            for (let task of tasks) {
+                if (selectedFilter === "All" ||
+                    selectedFilter === task.status) {
+
+                    foundTask = true;
+
+                    let taskDiv = document.createElement("div");
+                    taskDiv.className = "task";
+
+                    let title = document.createElement("h3");
+                    title.textContent = task.name;
+
+                    let details = document.createElement("p");
+                    details.textContent =
+                        "Assigned to: " + task.member +
+                        " | Due: " + task.dueDate;
+
+                    let status = document.createElement("p");
+                    status.textContent = "Status: " + task.status;
+
+                    taskDiv.appendChild(title);
+                    taskDiv.appendChild(details);
+                    taskDiv.appendChild(status);
+
+                    // Edit task
+                    let editButton = document.createElement("button");
+                    editButton.textContent = "Edit";
+
+                    editButton.onclick = function() {
+                        let newName = prompt("Enter task name:", task.name);
+
+                        if (newName !== null && newName.trim() !== "") {
+                            task.name = newName.trim();
+                            showTasks();
+                        }
+                    };
+
+                    // Change task status
+                    let statusButton = document.createElement("button");
+                    statusButton.textContent = "Next Status";
+
+                    statusButton.onclick = function() {
+                        if (task.status === "Pending") {
+                            task.status = "In Progress";
+                        } else if (task.status === "In Progress") {
+                            task.status = "Completed";
+                        } else {
+                            task.status = "Pending";
+                        }
+
+                        showTasks();
+                    };
+
+                    // Delete task
+                    let deleteButton = document.createElement("button");
+                    deleteButton.textContent = "Delete";
+
+                    deleteButton.onclick = function() {
+                        if (confirm("Delete this task?")) {
+                            tasks = tasks.filter(function(item) {
+                                return item.id !== task.id;
+                            });
+
+                            showTasks();
+                        }
+                    };
+
+                    taskDiv.appendChild(editButton);
+                    taskDiv.appendChild(statusButton);
+                    taskDiv.appendChild(deleteButton);
+
+                    taskList.appendChild(taskDiv);
+                }
+            }
+
+            if (!foundTask) {
+                taskList.textContent = "No tasks found.";
+            }
+        }
+
+        // Filter tasks by status
+        filter.addEventListener("change", showTasks);
+    </script>
+
+</body>
+</html>
