@@ -1,0 +1,522 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background: #f2f2f2;
+}
+
+header {
+    width: 100%;
+    padding: 8px 30px;
+    border: 4px solid transparent;
+    border-radius: 12px;
+    background: linear-gradient(#feffff, #c5c5c5) padding-box;
+}
+
+.header-box {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo-icon {
+    width: auto;
+    height: 60px;
+    object-fit: contain;
+}
+
+.page-name {
+    font-size: 35px;
+    line-height: 1;
+    margin: 0;
+}
+
+.blue {
+    color: #2456a5;
+}
+
+.yellow {
+    color: rgb(240, 159, 8);
+}
+
+.tagline {
+    font-size: 13px;
+    color: #f80000;
+    margin-left: 40px;
+    line-height: 1.2;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.main-nav a:hover {
+    color: #2456a5;
+}
+
+.main-content {
+    width: 100%;
+    flex: 1;
+    padding: 25px 45px;
+    background: #f2f2f2;
+}
+
+.page-title {
+    color: #0066b3;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.references-card {
+    width: 100%;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+    margin-bottom: 20px;
+}
+
+.reference-heading {
+    margin-bottom: 20px;
+}
+
+.reference-heading h4 {
+    font-size: 14px;
+    color: #333;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.reference-heading p {
+    font-size: 12px;
+    color: #777;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.references-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 35px;
+}
+
+.reference-column {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.reference-item p {
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.reference-item a {
+    display: block;
+    font-size: 12px;
+    color: #0066cc;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.reference-item a:hover {
+    text-decoration: underline;
+    color: #003d80;
+}
+
+.footer {
+    width: 100%;
+    background: #555555;
+    color: white;
+    padding: 18px 20px 15px;
+    margin-top: auto;
+}
+
+.footer-heading {
+    font-size: 13px;
+    margin-bottom: 18px;
+    font-weight: bold;
+}
+
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.team-member h4 {
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.team-member p {
+    font-size: 11px;
+    font-style: italic;
+    font-weight: bold;
+    color: #dddddd;
+}
+
+.contact-box {
+    width: 100%;
+    background: white;
+    color: #444;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
+}
+
+.contact-box h4 {
+    font-size: 12px;
+    font-weight: normal;
+    color: #0066b3;
+    margin-bottom: 8px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.contact-info p {
+    font-size: 12px;
+    color: #444;
+}
+
+.disclaimer {
+    width: 100%;
+    background: #e4f59b;
+    border: 1px solid #e6d500;
+    border-radius: 7px;
+    padding: 12px 15px;
+    color: #444;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.disclaimer h4 {
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 6px;
+}
+
+.disclaimer p {
+    font-size: 11px;
+    font-style: italic;
+    color: #777;
+    line-height: 1.5;
+}
+
+.copyright {
+    width: 100%;
+    background: #080808;
+    color: white;
+    text-align: center;
+    padding: 10px 8px;
+}
+
+.copyright p {
+    font-size: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+    header {
+        padding: 10px 20px;
+    }
+
+    .header-box {
+        gap: 15px;
+    }
+
+    .logo-icon {
+        height: 55px;
+    }
+
+    .page-name {
+        font-size: 30px;
+    }
+
+    .main-nav ul {
+        gap: 15px;
+    }
+
+    .main-nav a {
+        font-size: 13px;
+    }
+
+    .main-content {
+        padding: 25px 30px;
+    }
+
+    .references-grid {
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        padding: 15px;
+    }
+
+    .header-box {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .brand {
+        justify-content: center;
+    }
+
+    .main-nav {
+        width: 100%;
+    }
+
+    .main-nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .main-nav a {
+        font-size: 13px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 25px;
+    }
+
+    .references-card {
+        padding: 20px;
+    }
+
+    .references-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .team-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .contact-info {
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header {
+        padding: 12px 10px;
+    }
+
+    .header-box {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .brand {
+        gap: 5px;
+    }
+
+    .logo-icon {
+        height: 45px;
+    }
+
+    .page-name {
+        font-size: 27px;
+    }
+
+    .tagline {
+        font-size: 11px;
+        margin-left: 25px;
+    }
+
+    .main-nav ul {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .main-nav a {
+        font-size: 11px;
+    }
+
+    .main-content {
+        padding: 15px 12px;
+    }
+
+    .page-title {
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .references-card {
+        padding: 15px;
+    }
+
+    .reference-heading h4 {
+        font-size: 12px;
+    }
+
+    .reference-heading p {
+        font-size: 11px;
+    }
+
+    .references-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .reference-column {
+        gap: 15px;
+    }
+
+    .reference-item p {
+        font-size: 12px;
+    }
+
+    .reference-item a {
+        font-size: 11px;
+    }
+
+    .footer {
+        padding: 18px 15px;
+    }
+
+    .team-container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+
+    .team-member h4 {
+        font-size: 12px;
+    }
+
+    .team-member p {
+        font-size: 10px;
+    }
+
+    .contact-box {
+        padding: 12px;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 7px;
+    }
+
+    .contact-info p {
+        font-size: 11px;
+        overflow-wrap: anywhere;
+    }
+
+    .disclaimer {
+        padding: 12px;
+    }
+
+    .disclaimer p {
+        font-size: 10px;
+    }
+
+    .copyright {
+        padding: 10px 12px;
+    }
+
+    .copyright p {
+        font-size: 9px;
+        line-height: 1.5;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .logo-icon {
+        height: 38px;
+    }
+
+    .page-name {
+        font-size: 23px;
+    }
+
+    .tagline {
+        font-size: 10px;
+    }
+
+    .main-nav ul {
+        gap: 8px;
+    }
+
+    .main-nav a {
+        font-size: 10px;
+    }
+
+    .main-content {
+        padding: 12px 8px;
+    }
+
+    .references-card {
+        padding: 12px;
+    }
+
+    .page-title {
+        font-size: 20px;
+    }
+
+    .reference-item a {
+        font-size: 10px;
+    }
+}
